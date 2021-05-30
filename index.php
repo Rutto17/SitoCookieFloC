@@ -31,7 +31,36 @@ xhr.open("POST","index.php");//inizializzo la richiesta di tipo POST che mander√
 xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");//setto l'header della richiesta e il tipo di contenuto di tipo applicazione
 xhr.send();}//mando il body della richiesta
     </script>
-    <p>I've been FloCked?</p>
+    <script>
+    var stringa = "";
+    var raw = navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
+    let chromeVersion = parseInt(raw[2], 10);
+    if (!raw) {
+      stringa = "FloC non abilitati";
+    }
+    else if (chromeVersion < 89) {
+      stringa = "FloC non abilitati";
+    }
+      else if ('interestCohort' in document) {
+      // try to access the floc ID (returned as a promise)
+      document.interestCohort().then(function(cohort) {
+        stringa = 'Sei stato FloCato';
+      }).catch(function(err) {
+        console.log('Exception ', err);
+        stringa = "FloC abilitato";
+      })}
+      else {stringa = "FloC non abilitati";}
+      const xhr = new XMLHttpRequest();
+      xhr.onload = function(){
+        const serverResponse = document.getElementById("floced");
+        floced.innerHTML = stringa;
+      };
+      xhr.open("POST","index.php");
+      xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+      xhr.send();
+    </script>
+    <p>I've been FloCed?</p>
+    <p id = "floced"></p>
     <p id = "serverResponseID"></p><!--id a cui andr√† la risposta dal server-->
     <form action="cookies.php">
     <input type="submit" value="Vai ai Cookies" />

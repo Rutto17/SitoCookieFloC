@@ -1,4 +1,3 @@
-
 // QUESTO URL DEVE ESSERE QUELLO DELLA TUA Cookie policy (Informativa Estesa) sul TUO sito!
 var cookiePolicyURL = "cookiepolice.php";
 
@@ -75,7 +74,7 @@ $(document).ready(function() {
     optInHandler();   // mostra banner con informativa breve
   }
 });
-
+console.log();
 // Gestione del visitatore che ha negato i cookies
 function optInButtonHandler() {
   $('body').append(buttonHandlerHtml); // Inserisci il bottone per riaccettare i cookies
